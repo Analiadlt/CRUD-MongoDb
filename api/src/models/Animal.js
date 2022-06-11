@@ -3,31 +3,31 @@ const { Schema } = mongoose;
 
 const animalSchema = new Schema(
     {
-       dispositivo_nro: {
-        type: String,
-        require: true,
-        unique: true
-       },
+        senasa_id: {
+            type: String,
+            require: true
+           },
+        animal_tipo: {
+            type: String,
+            require: true,
+           },   
+        peso_kg: {
+            type: Number,
+            require: true,
+           },
+        potrero_nombre: {
+            type: String,
+            require: true
+           },
        dispositivo_tipo: {
         type: String,
         require: true
        },
-       senasa_id: {
-        type: String,
-        require: true
-       },
-       peso_kg: {
-        type: Number,
-        require: true,
-       },
-       potrero_nombre: {
-        type: String,
-        require: true
-       },
-       tipo: {
+       dispositivo_nro: {
         type: String,
         require: true,
-       },
+        unique: true
+       },       
     }, { timestamps: false, versionKey: false }
 )
 
