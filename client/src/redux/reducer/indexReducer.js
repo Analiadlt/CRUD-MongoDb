@@ -1,6 +1,6 @@
 const initialState = {
 	allAnimals: [],
-	animal: [],
+	animal: {},
 }
 
 function rootReducer(state = initialState, action) {
@@ -21,7 +21,7 @@ function rootReducer(state = initialState, action) {
 			}
 		case 'EDIT_ANIMAL':
 			return {
-				// ...state,
+				...state,
 				animal: action.payload
 			}
 		case 'SAVE_ANIMAL':

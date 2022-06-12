@@ -23,8 +23,7 @@ export function addAnimal(payload) {
 
 export function editAnimal(payload) {
 	return async function (dispatch) {
-		var json = await axios.get(`http://localhost:3001/edit/${payload.id}`, payload);
-		console.log(' editAnimal ', json.data)
+		var json = await axios.get(`http://localhost:3001/edit/${payload}`);
 		return dispatch({
 			type: 'EDIT_ANIMAL',
 			payload: json.data
@@ -35,6 +34,7 @@ export function editAnimal(payload) {
 export function saveAnimal(payload) {
 	return async function (dispatch) {
 		var json = await axios.put(`http://localhost:3001/edit/${payload.id}`, payload);
+		console.log ('JSON FROM saveAnimal indexAction ',json)
 		return dispatch({
 			type: 'SAVE_ANIMAL',
 			payload: json.data
@@ -44,7 +44,8 @@ export function saveAnimal(payload) {
 
 export function deleteAnimal(id) {
 	return async function (dispatch) {
-		var json = await axios.delete(`http://localhost:3001/delete/${id}`);
+		// var json = await axios.delete(`http://localhost:3001/delete/${id}`);
+		await axios.delete(`http://localhost:3001/delete/${id}`);
 		return dispatch({
 			type: 'DELETE_ANIMAL',
 			payload: id

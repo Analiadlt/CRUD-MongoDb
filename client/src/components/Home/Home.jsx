@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAnimals, deleteAnimal, editAnimal } from '../../redux/action/indexAction';
+import { getAnimals, deleteAnimal } from '../../redux/action/indexAction';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store/store';
 //import SearchBar from '../SearchBar/SearchBar';
@@ -10,33 +10,27 @@ import store from '../../redux/store/store';
 
 export default function Home() {
 	const dispatch = useDispatch();
-	
+
 	const allAnimals = useSelector((state) => state.allAnimals);
 
 	// Can still subscribe to the store
 	store.subscribe(() => console.log(store.getState()));
-  
+
 	useEffect(() => {
-		store.dispatch(getAnimals()); 
+		store.dispatch(getAnimals());
 	}, [dispatch]) //el [] es para que no sea un bucle infinito
 
 	function deleteClick(id) {
-	 	// e.preventDefault();
+		// e.preventDefault();
 		dispatch(deleteAnimal(id));
 	}
-
-	function editClick(id) {
-		// e.preventDefault();
-	   dispatch(editAnimal(id));
-   	}
 
 	return (
 		<div>
 			<h1>Establecimiento Ganadero</h1>
 			<>
-				<Link to = '/addAnimal'>
-				{/* <button onClick={e=>{return handleClick(e)}}>Cargar nuevo animal</button> */}
-				<button>Cargar nuevo animal</button>
+				<Link to='/addAnimal'>
+					<button>Load a new animal</button>
 				</Link>
 			</>
 
@@ -74,11 +68,11 @@ export default function Home() {
 										<td>{animal.dispositivo_tipo}</td>
 										<td>{animal.dispositivo_nro}</td>
 										<td>
-											<Link to = '/editAnimal'>
+											<Link to={`/editAnimal/${animal._id}`}>
 												<button>edit</button>
 											</Link>
 										</td>
-										<td><button onClick={e=>{return deleteClick(animal._id)}}>delete</button></td>
+										<td><button onClick={e => { return deleteClick(animal._id) }}>delete</button></td>
 									</tr>
 								);
 							})}
