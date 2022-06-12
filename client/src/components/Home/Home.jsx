@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAnimals } from '../../redux/action/indexAction';
+import { getAnimals, deleteAnimal, editAnimal } from '../../redux/action/indexAction';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store/store';
 //import SearchBar from '../SearchBar/SearchBar';
@@ -20,10 +20,15 @@ export default function Home() {
 		store.dispatch(getAnimals()); 
 	}, [dispatch]) //el [] es para que no sea un bucle infinito
 
-	// function handleClick(e) {
-	// 	e.preventDefault();
-	// 	// dispatch(addAnimals());
-	// }
+	function deleteClick(id) {
+	 	// e.preventDefault();
+		dispatch(deleteAnimal(id));
+	}
+
+	function editClick(id) {
+		// e.preventDefault();
+	   dispatch(editAnimal(id));
+   	}
 
 	return (
 		<div>
@@ -68,8 +73,12 @@ export default function Home() {
 										<td>{animal.potrero_nombre}</td>
 										<td>{animal.dispositivo_tipo}</td>
 										<td>{animal.dispositivo_nro}</td>
-										<button>edit</button>
-										<button>delete</button>
+										<td>
+											<Link to = '/editAnimal'>
+												<button>edit</button>
+											</Link>
+										</td>
+										<td><button onClick={e=>{return deleteClick(animal._id)}}>delete</button></td>
 									</tr>
 								);
 							})}

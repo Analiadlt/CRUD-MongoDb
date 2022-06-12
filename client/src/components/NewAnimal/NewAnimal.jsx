@@ -3,7 +3,6 @@ import { useNavigate  }  from 'react-router-dom';
 import { Link }  from 'react-router-dom';
 import { addAnimal } from '../../redux/action/indexAction';
 import { useDispatch, useSelector} from 'react-redux';
-import styles from './NewAnimal.module.css';
 
 function validate (input){
 	let errors={};
@@ -70,7 +69,7 @@ export default function NewAnimal(){
 				<div>
 					<label>ID SENASA:</label>
 					<input type='text' value= {input.senasa_id} name='senasa_id' onChange={(e)=> handleChange(e)} />
-					{errors.senasa_id && <p className ={styles.errors}>{errors.name}</p>}
+					{/* {errors.senasa_id && <p className ={styles.errors}>{errors.name}</p>} */}
 				</div>
                 <label>
                     Tipo de Animal:
@@ -87,7 +86,7 @@ export default function NewAnimal(){
 				<div>
 					<label>Nombre de potrero:</label>
 					<input type='text' value= {input.potrero_nombre} name='potrero_nombre' onChange={(e)=> handleChange(e)} />
-					{errors.potrero_nombre && <p className ={styles.errors}>{errors.name}</p>}
+					{/* {errors.potrero_nombre && <p className ={styles.errors}>{errors.name}</p>} */}
 				</div>
                 <label>
                 Tipo de Dispositivo:
@@ -99,7 +98,7 @@ export default function NewAnimal(){
                 <div>
 					<label>Número de dispositivo:</label>
 					<input type='text' value= {input.dispositivo_nro} name='dispositivo_nro' onChange={(e)=> handleChange(e)} />
-					{errors.dispositivo_nro && <p className ={styles.errors}>{errors.name}</p>}
+					{/* {errors.dispositivo_nro && <p className ={styles.errors}>{errors.name}</p>} */}
 				</div>
 			{/* <button type='submit' disabled={Object.keys(errors).length? true : false}> */}
 			<button type='submit'>

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes , Route} from 'react-router-dom';
 import React from 'react';
 import Home from './components/Home/Home';
 import NewAnimal from './components/NewAnimal/NewAnimal';
-// import AnimalDetail from './components/AnimalDetail';
+import EditAnimal from './components/EditAnimal/EditAnimal';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
          <Route exact path="/" element={<Home />}></Route>
          <Route path="/addAnimal" element={<NewAnimal />}></Route>
-         {/*<Route path="/home/:id" element={<AnimalDetail />}></Route> */}
+         <Route path="/editAnimal/:id" element={<EditAnimal />}></Route>
         </Routes>
         
       </div>
