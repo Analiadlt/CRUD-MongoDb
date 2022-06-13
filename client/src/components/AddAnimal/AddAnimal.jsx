@@ -74,7 +74,7 @@ export default function AddAnimal() {
 				<label>
 					Tipo de Animal:
 					<select>
-						<option selected value="Novillo">Novillo</option>
+						<option value="Novillo">Novillo</option>
 						<option value="Toro">Toro</option>
 						<option value="Vaquillona">Vaquillona</option>
 					</select>

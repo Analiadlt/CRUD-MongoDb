@@ -31,11 +31,14 @@ router.get('/', async (req, res) => {
 
 router.post('/add', async (req, res) => {
 
-  const animal = Animal(req.body);
-
-  await animal.save();
-
-  res.send('Data saved.');
+  try {
+    const animal = Animal(req.body);
+    await animal.save();
+    const animals = await Animal.find();
+    res.send(animals);
+  } catch {
+    res.status(404).send([]);
+  }
 
 })
 
@@ -43,7 +46,7 @@ router.post('/add', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
 
   const id = req.params.id;
-  
+
   try {
     if (id) {
       const animal = await Animal.findById(id);
@@ -63,7 +66,7 @@ router.put('/edit', async (req, res) => {
   const data = req.body.prevData;
 
   try {
-    if (id && req.body.prevData)  {
+    if (id && req.body.prevData) {
       await Animal.findByIdAndUpdate(id, data);
       const animals = await Animal.find();
       res.status(200).send(animals);
@@ -81,7 +84,7 @@ router.delete('/delete/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-    if (id)  {
+    if (id) {
       await Animal.findByIdAndDelete(id);
       res.status(200).send('Data deleted.');
     } else {

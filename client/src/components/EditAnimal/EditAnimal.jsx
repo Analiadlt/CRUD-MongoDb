@@ -61,7 +61,7 @@ export default function EditAnimal() {
 		dispatch(saveAnimal({ prevData, id }));
 		alert('Los datos fueron almacenados.');
 		// setInput(newInput)
-		// setData(prevData);
+		setData(prevData);
 		navigate('/');
 	}
 
@@ -79,9 +79,9 @@ export default function EditAnimal() {
 				<label>
 					Tipo de Animal:
 					<select name='animal_tipo' onChange={(e) => handleChange(e)} >
-						<option value="Novillo" selected={(animal_tipo === 'Novillo')? true : false }>Novillo</option>
-						<option value="Toro" selected={(animal_tipo === 'Toro')? true : false }>Toro</option>
-						<option value="Vaquillona" selected={(animal_tipo === 'Vaquillona')? true : false }>Vaquillona</option>
+						<option placeholder="Novillo" selected={(animal_tipo === 'Novillo') ? true : false}>Novillo</option>
+						<option placeholder="Toro" selected={(animal_tipo === 'Toro') ? true : false}>Toro</option>
+						<option placeholder="Vaquillona" selected={(animal_tipo === 'Vaquillona') ? true : false}>Vaquillona</option>
 					</select>
 				</label>
 				<div>
@@ -96,8 +96,8 @@ export default function EditAnimal() {
 				<label>
 					Tipo de Dispositivo:
 					<select name='dispositivo_tipo' onChange={(e) => handleChange(e)} >
-						<option value="COLLAR" selected={(dispositivo_tipo === 'COLLAR')? true : false }>COLLAR</option>
-						<option value="CARAVANA" selected={(dispositivo_tipo === 'CARAVANA')? true : false }>CARAVANA</option>
+						<option placeholder="COLLAR" selected={(dispositivo_tipo === 'COLLAR') ? true : false}>COLLAR</option>
+						<option placeholder="CARAVANA" selected={(dispositivo_tipo === 'CARAVANA') ? true : false}>CARAVANA</option>
 					</select>
 				</label>
 				<div>
