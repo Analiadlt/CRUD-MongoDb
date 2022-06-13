@@ -3,23 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { addAnimal } from '../../redux/action/indexAction';
 import { useDispatch } from 'react-redux';
-
-function validate(input) {
-	let errors = {};
-	if (!input.name) {
-		errors.name = 'Please, insert a Name.'
-	}
-
-	// if (!input.types.length) {
-	// 	errors.types='You must select a Type.'
-	// }
-	// if (input.img) {
-	// 	if(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(input.img)) {
-	//       errors.img='Invalid url.';
-	// }}
-
-	return errors;
-}
+import { validate } from '../Utils/utils';
 
 export default function AddAnimal() {
 	const dispatch = useDispatch();
@@ -44,8 +28,7 @@ export default function AddAnimal() {
 				...input,
 				[e.target.name]: e.target.value
 			}
-			//	const errors= validate(newInput)
-			//	setErrors(errors)
+	
 			setErrors(validate(newValues));
 
 			return newValues;
@@ -69,7 +52,6 @@ export default function AddAnimal() {
 				<div>
 					<label>ID SENASA:</label>
 					<input type='text' value={input.senasa_id} name='senasa_id' onChange={(e) => handleChange(e)} />
-					{/* {errors.senasa_id && <p className ={styles.errors}>{errors.name}</p>} */}
 				</div>
 				<label>
 					Tipo de Animal:
@@ -86,7 +68,6 @@ export default function AddAnimal() {
 				<div>
 					<label>Nombre de potrero:</label>
 					<input type='text' value={input.potrero_nombre} name='potrero_nombre' onChange={(e) => handleChange(e)} />
-					{/* {errors.potrero_nombre && <p className ={styles.errors}>{errors.name}</p>} */}
 				</div>
 				<label>
 					Tipo de Dispositivo:
@@ -98,12 +79,12 @@ export default function AddAnimal() {
 				<div>
 					<label>Número de dispositivo:</label>
 					<input type='text' value={input.dispositivo_nro} name='dispositivo_nro' onChange={(e) => handleChange(e)} />
-					{/* {errors.dispositivo_nro && <p className ={styles.errors}>{errors.name}</p>} */}
 				</div>
-				{/* <button type='submit' disabled={Object.keys(errors).length? true : false}> */}
-				<button type='submit'>
+				<button type='submit' disabled={Object.keys(errors).length ? true : false} onClick={(e) => handleSubmit(e)}>
+				{/* <button type='submit'> */}
 					Guardar Datos del Animal
 				</button>
+				{errors.name && <p>{errors.name}</p>}
 			</form>
 		</div>
 	)

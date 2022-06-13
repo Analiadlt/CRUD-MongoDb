@@ -4,19 +4,19 @@ const router = Router();
 
 const Animal = require("../models/Animal");
 
-router.get('/:dispositivo_nro', async (req, res) => {
+// router.get('/:dispositivo_nro', async (req, res) => {
 
-  let nro = req.params.dispositivo_nro;
+//   let nro = req.params.dispositivo_nro;
 
-  try {
-    if (nro) {
-      const animals = await Animal.find({ dispositivo_nro: nro });
-      res.status(200).send(animals);
-    }
-  } catch (e) {
-    res.status(404).send('Data not found.');
-  }
-})
+//   try {
+//     if (nro) {
+//       const animals = await Animal.find({ dispositivo_nro: nro });
+//       res.status(200).send(animals);
+//     }
+//   } catch (e) {
+//     res.status(404).send('Data not found.');
+//   }
+// })
 
 router.get('/', async (req, res) => {
 
@@ -66,7 +66,7 @@ router.put('/edit', async (req, res) => {
   const data = req.body.prevData;
 
   try {
-    if (id && req.body.prevData) {
+    if (id && data) {
       await Animal.findByIdAndUpdate(id, data);
       const animals = await Animal.find();
       res.status(200).send(animals);

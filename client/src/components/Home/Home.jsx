@@ -18,11 +18,14 @@ export default function Home() {
 
 	useEffect(() => {
 		store.dispatch(getAnimals());
-	}, [dispatch]) //el [] es para que no sea un bucle infinito
+	}, [dispatch]) 
 
 	function deleteClick(id) {
 		// e.preventDefault();
-		dispatch(deleteAnimal(id));
+		
+		if (window.confirm("Do you really want to delete animal?")) {
+			dispatch(deleteAnimal(id));
+		  }
 	}
 
 	return (
@@ -83,7 +86,6 @@ export default function Home() {
 					</table>
 				</div>
 			</div>
-
 		</div>
 	)
 }

@@ -32,12 +32,20 @@ export function editAnimal(payload) {
 }
 
 export function saveAnimal(payload) {
+
 	return async function (dispatch) {
 		var json = await axios.put(`http://localhost:3001/edit`, payload);
-		return dispatch({
-			type: 'SAVE_ANIMAL',
-			payload: json.data
-		})
+		try {
+			return dispatch({
+				type: 'SAVE_ANIMAL',
+				payload: json.data
+			})
+		} catch {
+			return dispatch({
+				type: 'SAVE_ANIMAL',
+				payload: 'Data not found or Wrong Id.'
+			})
+		}
 	}
 }
 
