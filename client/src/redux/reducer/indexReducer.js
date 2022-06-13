@@ -1,9 +1,9 @@
 const initialState = {
 	allAnimals: [],
-	animal: {},
+	animal: [],
 }
 
-function rootReducer(state = initialState, action) {
+function indexReducer(state = initialState, action) {
 	switch (action.type) {
 		case 'GET_ANIMALS':
 			return {
@@ -35,5 +35,5 @@ function rootReducer(state = initialState, action) {
 
 }
 
-export default rootReducer;
+export default indexReducer;
 

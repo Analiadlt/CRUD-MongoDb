@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate  }  from 'react-router-dom';
-import { Link, useParams }  from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { editAnimal, saveAnimal } from '../../redux/action/indexAction';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './EditAnimal.module.css';
 
-function validate (input){
-	let errors={};
+function validate(input) {
+	let errors = {};
 	if (!input.senasa_id) {
-		errors.name='Please, insert an ID SENASA.'
+		errors.name = 'Please, insert an ID SENASA.'
 	}
 
 	// if (!input.types.length) {
@@ -22,46 +22,46 @@ function validate (input){
 	return errors;
 }
 
-export default function EditAnimal(){
+export default function EditAnimal() {
+	let { id } = useParams();
 
-	let {id} = useParams();
-
-	const dispatch=useDispatch();
-	const navigate  = useNavigate();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(editAnimal(id))
 	}, [dispatch, id])
 
-	const data = useSelector((state)=> state.animal);
-	
+	const data = useSelector((state) => state.animal);
+
 	const [errors, setErrors] = useState({});
 
 	const [prevData, setData] = useState({});
 	// const [info,setData] = useState(data);
 
-	console.log('DATAAAAAAAAAA ', data)
-    
-    function handleChange(e) {
-		setData((data)=>{
+	console.log('prev DATAAAAAAAAAA ', prevData, id)
+	let { senasa_id, animal_tipo, peso_kg, potrero_nombre, dispositivo_tipo, dispositivo_nro } = data;
+
+	function handleChange(e) {
+		setData((prevData) => {
 			const newValues = {
-				...data,
-			[e.target.name]: e.target.value
-		}
-		//	const errors= validate(newInput)
-		//	setErrors(errors)
-			setErrors(validate(newValues));
+				...prevData,
+				[e.target.name]: e.target.value
+			}
+
+			// setErrors(validate(newValues));
 
 			return newValues;
 		});
+		console.log('data handleChange', { [e.target.name]: e.target.value })
 	};
 
-	function handleSubmit(e){
+	function handleSubmit(e) {
 		e.preventDefault();
-		dispatch(saveAnimal(data));
+		dispatch(saveAnimal({ prevData, id }));
 		alert('Los datos fueron almacenados.');
 		// setInput(newInput)
-		setData(data);
+		// setData(prevData);
 		navigate('/');
 	}
 
@@ -69,46 +69,48 @@ export default function EditAnimal(){
 		<div >
 			<Link to='/'><button>Volver</button></Link>
 			<h1>Edit Animal Data</h1>
-			<form onSubmit={(e)=>handleSubmit(e)}>
+			{/* <form> */}
+			<>
 				<div>
 					<label>ID SENASA:</label>
-					<input type='text' value= {data.senasa_id} name='senasa_id' onChange={(e)=> handleChange(e)} />
-					{errors.senasa_id && <p className ={styles.errors}>{errors.name}</p>}
+					<input type='text' placeholder={senasa_id} name='senasa_id' onChange={(e) => handleChange(e)} />
+					{errors.senasa_id && <p className={styles.errors}>{errors.name}</p>}
 				</div>
-                <label>
-                    Tipo de Animal:
-                    <select value={data.animal_tipo} name='animal_tipo' onChange={(e)=> handleChange(e)} >
-                        <option value="Novillo">Novillo</option>
-                        <option value="Toro">Toro</option>
-                        <option value="Vaquillona">Vaquillona</option>
-                    </select>
-                </label>
+				<label>
+					Tipo de Animal:
+					<select name='animal_tipo' onChange={(e) => handleChange(e)} >
+						<option value="Novillo" selected={(animal_tipo === 'Novillo')? true : false }>Novillo</option>
+						<option value="Toro" selected={(animal_tipo === 'Toro')? true : false }>Toro</option>
+						<option value="Vaquillona" selected={(animal_tipo === 'Vaquillona')? true : false }>Vaquillona</option>
+					</select>
+				</label>
 				<div>
 					<label>Peso animal (kg):</label>
-					<input type='number' value= {data.peso_kg} name='peso_kg' onChange={(e)=> handleChange(e)} />
+					<input type='number' placeholder={peso_kg} name='peso_kg' onChange={(e) => handleChange(e)} />
 				</div>
 				<div>
 					<label>Nombre de potrero:</label>
-					<input type='text' value= {data.potrero_nombre} name='potrero_nombre' onChange={(e)=> handleChange(e)} />
-					{errors.potrero_nombre && <p className ={styles.errors}>{errors.name}</p>}
+					<input type='text' placeholder={potrero_nombre} name='potrero_nombre' onChange={(e) => handleChange(e)} />
+					{errors.potrero_nombre && <p className={styles.errors}>{errors.name}</p>}
 				</div>
-                <label>
-                Tipo de Dispositivo:
-					<select value= {data.dispositivo_tipo} name='dispositivo_tipo' onChange={(e)=> handleChange(e)} >
-                        <option value="COLLAR">COLLAR</option>
-                        <option value="CARAVANA">CARAVANA</option>
-                    </select>
-                </label>
-                <div>
+				<label>
+					Tipo de Dispositivo:
+					<select name='dispositivo_tipo' onChange={(e) => handleChange(e)} >
+						<option value="COLLAR" selected={(dispositivo_tipo === 'COLLAR')? true : false }>COLLAR</option>
+						<option value="CARAVANA" selected={(dispositivo_tipo === 'CARAVANA')? true : false }>CARAVANA</option>
+					</select>
+				</label>
+				<div>
 					<label>Número de dispositivo:</label>
-					<input type='text' value= {data.dispositivo_nro} name='dispositivo_nro' onChange={(e)=> handleChange(e)} />
-					{errors.dispositivo_nro && <p className ={styles.errors}>{errors.name}</p>}
+					<input type='text' placeholder={dispositivo_nro} name='dispositivo_nro' onChange={(e) => handleChange(e)} />
+					{errors.dispositivo_nro && <p className={styles.errors}>{errors.name}</p>}
 				</div>
-			{/* <button type='submit' disabled={Object.keys(errors).length? true : false}> */}
-			<button type='submit' onClick={(e)=> handleSubmit(e)}>
-				Update Animal Data
-			</button>
-		</form>		
+				{/* <button type='submit' disabled={Object.keys(errors).length? true : false}> */}
+				<button type='submit' onClick={(e) => handleSubmit(e)}>
+					Update Animal Data
+				</button>
+				{/* </form> */}
+			</>
 		</div>
 	)
 }

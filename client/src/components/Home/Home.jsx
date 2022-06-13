@@ -58,7 +58,7 @@ export default function Home() {
 							</tr>
 						</thead>
 						<tbody>
-							{allAnimals.map((animal, index) => {
+							{allAnimals?.map((animal, index) => {
 								return (
 									<tr key={index}>
 										<td>{animal.senasa_id}</td>
@@ -73,6 +73,9 @@ export default function Home() {
 											</Link>
 										</td>
 										<td><button onClick={e => { return deleteClick(animal._id) }}>delete</button></td>
+										{/* <td>
+											<img className="svg-icon" src="./assets/svg/edit.svg" alt="icono de edición"/>
+										</td> */}
 									</tr>
 								);
 							})}

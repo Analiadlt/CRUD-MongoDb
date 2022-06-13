@@ -4,17 +4,6 @@ const router = Router();
 
 const Animal = require("../models/Animal");
 
-router.get('/', async (req, res) => {
-
-  try {
-    const animals = await Animal.find();
-    res.status(200).send(animals);
-  } catch (e) {
-    res.status(404).send('Data not found.');
-  }
-
-})
-
 router.get('/:dispositivo_nro', async (req, res) => {
 
   let nro = req.params.dispositivo_nro;
@@ -26,6 +15,16 @@ router.get('/:dispositivo_nro', async (req, res) => {
     }
   } catch (e) {
     res.status(404).send('Data not found.');
+  }
+})
+
+router.get('/', async (req, res) => {
+
+  try {
+    const animals = await Animal.find();
+    res.status(200).send(animals);
+  } catch (e) {
+    res.status(404).send([]);
   }
 
 })
@@ -44,7 +43,7 @@ router.post('/add', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
 
   const id = req.params.id;
-
+  
   try {
     if (id) {
       const animal = await Animal.findById(id);
@@ -58,14 +57,16 @@ router.get('/edit/:id', async (req, res) => {
 
 })
 
-router.put('/edit/:id', async (req, res) => {
+router.put('/edit', async (req, res) => {
 
-  const id = req.params.id;
+  const id = req.body.id;
+  const data = req.body.prevData;
 
   try {
-    if (id && req.body)  {
-      await Animal.findByIdAndUpdate(id, req.body);
-      res.status(200).send('Data updated.');
+    if (id && req.body.prevData)  {
+      await Animal.findByIdAndUpdate(id, data);
+      const animals = await Animal.find();
+      res.status(200).send(animals);
     } else {
       res.status(404).send('Data not found.');
     }
@@ -89,7 +90,6 @@ router.delete('/delete/:id', async (req, res) => {
   } catch (e) {
     res.status(404).send('Wrong Id.');
   }
-
 })
 
 module.exports = router;

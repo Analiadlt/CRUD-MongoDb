@@ -33,8 +33,7 @@ export function editAnimal(payload) {
 
 export function saveAnimal(payload) {
 	return async function (dispatch) {
-		var json = await axios.put(`http://localhost:3001/edit/${payload.id}`, payload);
-		console.log ('JSON FROM saveAnimal indexAction ',json)
+		var json = await axios.put(`http://localhost:3001/edit`, payload);
 		return dispatch({
 			type: 'SAVE_ANIMAL',
 			payload: json.data

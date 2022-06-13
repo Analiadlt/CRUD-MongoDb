@@ -21,7 +21,7 @@ function validate(input) {
 	return errors;
 }
 
-export default function NewAnimal() {
+export default function AddAnimal() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
