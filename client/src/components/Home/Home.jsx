@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAnimals, deleteAnimal } from '../../redux/action/indexAction';
 import { Link } from 'react-router-dom';
 import store from '../../redux/store/store';
-//import SearchBar from '../SearchBar/SearchBar';
-// import styles from './Home.module.css';
+import styles from './Home.module.css';
 
 
 export default function Home() {
@@ -29,25 +28,14 @@ export default function Home() {
 	}
 
 	return (
-		<div>
-			<h1>Establecimiento Ganadero</h1>
+		<div className="App">
 			<>
 				<Link to='/addAnimal'>
-					<button>Load a new animal</button>
+					<button className={styles.boton}>Load a new animal</button>
 				</Link>
 			</>
 
-			{/* <SearchBar /> */}
-
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "flex-end",
-					marginTop: "150px",
-					marginRight: "500px",
-					color: "black"
-				}}
-			>
+			<div className={styles.tabla}>
 				<div>
 					<table className="table">
 						<thead>

@@ -1,0 +1,11 @@
+.svg-icon {
+    height: 1.5 em;
+    width: auto;
+}
+
+.name {
+    display: flex;
+    font-size: xx-large;
+    font-family: system-ui;
+    color: red;
+}
