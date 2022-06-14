@@ -18,10 +18,13 @@ router.get('/', async (req, res) => {
 router.post('/add', async (req, res) => {
 
   try {
-    const animal = Animal(req.body);
-    await animal.save();
-    const animals = await Animal.find();
-    res.send(animals);
+    const { senasa_id, peso_kg, potrero_nombre, dispositivo_nro } = req.body;
+    if (senasa_id && peso_kg && potrero_nombre & dispositivo_nro) {
+      const animal = Animal(req.body);
+      await animal.save();
+      const animals = await Animal.find();
+      res.send(animals);
+    } else res.status(404).send([]);
   } catch {
     res.status(404).send([]);
   }
