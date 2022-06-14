@@ -1,8 +1,20 @@
-.tabla {
+table {
     display: "flex";
     justify-content: "flex-end";
     margin-top: "150px";
     margin-right: "500px";
     color: black;
     font-family: sans-serif;
+    /* border-collapse: collapse; */
+    margin: auto;
+}
+
+td {
+    padding: 0.3rem;
+}
+
+th{
+    padding: 0.5rem;
+    border-bottom: 1px solid green;
+    border-width: 0.1rem;
 }

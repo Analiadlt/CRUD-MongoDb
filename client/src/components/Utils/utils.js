@@ -1,6 +1,6 @@
 export function validate(input) {
 	let errors = {}
-	
+
 	if (input.senasa_id && input.senasa_id.length > 16) {
 		errors.name = 'ID SENASA must be a 16-character alphanumeric string.'
 	} else {

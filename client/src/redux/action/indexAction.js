@@ -51,7 +51,6 @@ export function saveAnimal(payload) {
 
 export function deleteAnimal(id) {
 	return async function (dispatch) {
-		// var json = await axios.delete(`http://localhost:3001/delete/${id}`);
 		await axios.delete(`http://localhost:3001/delete/${id}`);
 		return dispatch({
 			type: 'DELETE_ANIMAL',

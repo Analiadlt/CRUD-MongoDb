@@ -55,3 +55,11 @@
     font-weight: 600;
     font-size: 12px;
 }
+
+.home {
+    display: flex;
+    font-size:large;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: black;
+}

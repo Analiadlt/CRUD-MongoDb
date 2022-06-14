@@ -10,3 +10,7 @@
     font-weight: bold;
     color: black;
 }
+
+img{
+    display:flex;
+}
