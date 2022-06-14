@@ -4,20 +4,6 @@ const router = Router();
 
 const Animal = require("../models/Animal");
 
-// router.get('/:dispositivo_nro', async (req, res) => {
-
-//   let nro = req.params.dispositivo_nro;
-
-//   try {
-//     if (nro) {
-//       const animals = await Animal.find({ dispositivo_nro: nro });
-//       res.status(200).send(animals);
-//     }
-//   } catch (e) {
-//     res.status(404).send('Data not found.');
-//   }
-// })
-
 router.get('/', async (req, res) => {
 
   try {
@@ -94,6 +80,20 @@ router.delete('/delete/:id', async (req, res) => {
     res.status(404).send('Wrong Id.');
   }
 })
+
+// router.get('/:senasa_id', async (req, res) => {
+
+//   let id = req.params.senasa_id;
+
+//   try {
+//     if (id) {
+//       const animal = await Animal.find({ senasa_id: id });
+//       res.status(200).send(animal);
+//     }
+//   } catch (e) {
+//     res.status(404).send('Data not found.');
+//   }
+// })
 
 module.exports = router;
 

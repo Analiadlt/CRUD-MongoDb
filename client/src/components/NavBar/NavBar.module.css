@@ -6,6 +6,7 @@
 .name {
     display: flex;
     font-size: xx-large;
-    font-family: system-ui;
-    color: red;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: black;
 }

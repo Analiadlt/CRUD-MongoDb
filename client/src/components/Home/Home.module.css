@@ -16,14 +16,6 @@
     border-radius: 8px;
    }
 
-.tabla {
-    display: "flex";
-    justify-content: "flex-end";
-    margin-top: "150px";
-    margin-right: "500px";
-    color: "black"
-}
-
 button:hover {
     color: white;
     background-color: lightgreen;
