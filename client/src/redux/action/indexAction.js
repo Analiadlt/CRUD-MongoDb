@@ -16,7 +16,7 @@ export function addAnimal(payload) {
 		var json = await axios.post("http://localhost:3001/add", payload);
 		return dispatch({
 			type: 'ADD_ANIMAL',
-			payload: json.data
+			payload: json.data || ''
 		})
 	}
 }

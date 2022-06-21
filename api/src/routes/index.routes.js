@@ -19,7 +19,7 @@ router.post('/add', async (req, res) => {
 
   try {
     const { senasa_id, peso_kg, potrero_nombre, dispositivo_nro } = req.body;
-    if (senasa_id && peso_kg && potrero_nombre & dispositivo_nro) {
+    if (senasa_id && peso_kg && potrero_nombre && dispositivo_nro) {
       const animal = Animal(req.body);
       await animal.save();
       const animals = await Animal.find();
