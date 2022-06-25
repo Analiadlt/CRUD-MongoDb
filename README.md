@@ -1,4 +1,4 @@
-# Bastó
+# CRUD desarrollado con MongoDb - NodeJS - ReactJS - Redux - CSS
 
 Esta app consiste en un formulario CRUD (Altas, Bajas, Modificaciones) para los datos de vacas.
 
